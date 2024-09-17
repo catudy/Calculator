@@ -176,11 +176,7 @@ public class CalculatorUI {
                 return;
 
             typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-            if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                inputScreen.setText(String.valueOf((int) typedValue));
-            } else {
-                inputScreen.setText(String.valueOf(typedValue));
-            }
+            updateInputScreen(typedValue);
             selectedOperator = '%';
             go = false;
             addToDisplay = false;
@@ -193,11 +189,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '/';
                 go = false;
                 addToDisplay = false;
@@ -258,11 +250,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '*';
                 go = false;
                 addToDisplay = false;
@@ -323,12 +311,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
-
+                updateInputScreen(typedValue);
                 selectedOperator = '-';
                 go = false;
                 addToDisplay = false;
@@ -389,11 +372,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '+';
                 go = false;
                 addToDisplay = false;
@@ -437,11 +416,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '=';
                 addToDisplay = false;
             }
@@ -455,11 +430,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = Math.sqrt(Double.parseDouble(inputScreen.getText()));
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '√';
                 addToDisplay = false;
             }
@@ -473,11 +444,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = '^';
                 go = false;
                 addToDisplay = false;
@@ -495,16 +462,20 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = Math.log(Double.parseDouble(inputScreen.getText()));
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                updateInputScreen(typedValue);
                 selectedOperator = 'l';
                 addToDisplay = false;
             }
         });
         btnLog.setVisible(false);
+    }
+
+    private void updateInputScreen(double value) {
+        if (value % 1 == 0) {
+            inputScreen.setText(String.valueOf((int) value));
+        } else {
+            inputScreen.setText(String.format("%.3f", value));
+        }
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
