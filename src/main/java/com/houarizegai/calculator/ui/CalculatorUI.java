@@ -176,11 +176,7 @@ public class CalculatorUI {
                 return;
 
             typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-            if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                inputScreen.setText(String.valueOf((int) typedValue));
-            } else {
-                inputScreen.setText(String.valueOf(typedValue));
-            }
+            inputScreen.setText(formatValue(typedValue));
             selectedOperator = '%';
             go = false;
             addToDisplay = false;
@@ -193,11 +189,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '/';
                 go = false;
                 addToDisplay = false;
@@ -207,49 +199,13 @@ public class CalculatorUI {
         });
 
         btn7 = createButton("7", columns[0], rows[2]);
-        btn7.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("7");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "7");
-                }
-            } else {
-                inputScreen.setText("7");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn7.addActionListener(event -> updateInputScreen("7"));
 
         btn8 = createButton("8", columns[1], rows[2]);
-        btn8.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("8");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "8");
-                }
-            } else {
-                inputScreen.setText("8");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn8.addActionListener(event -> updateInputScreen("8"));
 
         btn9 = createButton("9", columns[2], rows[2]);
-        btn9.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("9");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "9");
-                }
-            } else {
-                inputScreen.setText("9");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn9.addActionListener(event -> updateInputScreen("9"));
 
         btnMul = createButton("*", columns[3], rows[2]);
         btnMul.addActionListener(event -> {
@@ -258,11 +214,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '*';
                 go = false;
                 addToDisplay = false;
@@ -272,49 +224,13 @@ public class CalculatorUI {
         });
 
         btn4 = createButton("4", columns[0], rows[3]);
-        btn4.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("4");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "4");
-                }
-            } else {
-                inputScreen.setText("4");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn4.addActionListener(event -> updateInputScreen("4"));
 
         btn5 = createButton("5", columns[1], rows[3]);
-        btn5.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("5");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "5");
-                }
-            } else {
-                inputScreen.setText("5");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn5.addActionListener(event -> updateInputScreen("5"));
 
         btn6 = createButton("6", columns[2], rows[3]);
-        btn6.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("6");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "6");
-                }
-            } else {
-                inputScreen.setText("6");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn6.addActionListener(event -> updateInputScreen("6"));
 
         btnSub = createButton("-", columns[3], rows[3]);
         btnSub.addActionListener(event -> {
@@ -323,12 +239,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
-
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '-';
                 go = false;
                 addToDisplay = false;
@@ -338,49 +249,13 @@ public class CalculatorUI {
         });
 
         btn1 = createButton("1", columns[0], rows[4]);
-        btn1.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("1");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "1");
-                }
-            } else {
-                inputScreen.setText("1");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn1.addActionListener(event -> updateInputScreen("1"));
 
         btn2 = createButton("2", columns[1], rows[4]);
-        btn2.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("2");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "2");
-                }
-            } else {
-                inputScreen.setText("2");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn2.addActionListener(event -> updateInputScreen("2"));
 
         btn3 = createButton("3", columns[2], rows[4]);
-        btn3.addActionListener(event -> {
-            if (addToDisplay) {
-                if (Pattern.matches("[0]*", inputScreen.getText())) {
-                    inputScreen.setText("3");
-                } else {
-                    inputScreen.setText(inputScreen.getText() + "3");
-                }
-            } else {
-                inputScreen.setText("3");
-                addToDisplay = true;
-            }
-            go = true;
-        });
+        btn3.addActionListener(event -> updateInputScreen("3"));
 
         btnAdd = createButton("+", columns[3], rows[4]);
         btnAdd.addActionListener(event -> {
@@ -389,11 +264,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '+';
                 go = false;
                 addToDisplay = false;
@@ -437,11 +308,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '=';
                 addToDisplay = false;
             }
@@ -455,11 +322,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = Math.sqrt(Double.parseDouble(inputScreen.getText()));
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '√';
                 addToDisplay = false;
             }
@@ -473,11 +336,7 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = '^';
                 go = false;
                 addToDisplay = false;
@@ -495,16 +354,34 @@ public class CalculatorUI {
 
             if (go) {
                 typedValue = Math.log(Double.parseDouble(inputScreen.getText()));
-                if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
-                    inputScreen.setText(String.valueOf((int) typedValue));
-                } else {
-                    inputScreen.setText(String.valueOf(typedValue));
-                }
+                inputScreen.setText(formatValue(typedValue));
                 selectedOperator = 'l';
                 addToDisplay = false;
             }
         });
         btnLog.setVisible(false);
+    }
+
+    private void updateInputScreen(String value) {
+        if (addToDisplay) {
+            if (Pattern.matches("[0]*", inputScreen.getText())) {
+                inputScreen.setText(value);
+            } else {
+                inputScreen.setText(inputScreen.getText() + value);
+            }
+        } else {
+            inputScreen.setText(value);
+            addToDisplay = true;
+        }
+        go = true;
+    }
+
+    private String formatValue(double value) {
+        if (value % 1 == 0) {
+            return String.valueOf((int) value);
+        } else {
+            return String.format("%.3f", value);
+        }
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
